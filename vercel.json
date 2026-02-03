@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd caelan-portfolio && npm run build",
+  "outputDirectory": "caelan-portfolio/dist",
+  "installCommand": "cd caelan-portfolio && npm install"
+}
