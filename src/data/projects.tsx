@@ -107,6 +107,7 @@ export const projects: Project[] = [
       "Planning future features including user authentication, data visualization, and favorites functionality",
       "Managing project structure with frontend/backend separation and version control using GitHub",
     ],
+    github: "https://github.com/caem366/campus_bites",
   },
   {
     slug: "campusbites",
