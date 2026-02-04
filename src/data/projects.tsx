@@ -137,7 +137,7 @@ export const projects: Project[] = [
   {
     slug: "mood-music-app",
     title: "Mood-Based Music Recommendation App",
-    tagline: "Web app that suggests songs based on user mood using emotion detection from text input",
+    tagline: "Web application that recommends music based on emotional cues extracted from user-provided text input",
     role: "Full Stack Developer",
     inProgress: true,
     stack: [
@@ -147,14 +147,17 @@ export const projects: Project[] = [
       "Angular Reactive Forms",
       "Spotify API",
       "Last.fm API",
+      "REST APIs",
       "Sentiment Analysis",
-      "HTML/CSS",
+      "NLP",
     ],
     highlights: [
-      "Building web app that suggests songs based on user mood using Angular and emotion detection from text input",
-      "Implementing sentiment analysis to match user input with appropriate music via Spotify or Last.fm API",
-      "Designing responsive UI with Angular components and reactive forms for smooth user interaction",
-      "Working with observables, routing, and API integration to ensure dynamic playlist generation",
+      "Developed web application that recommends music based on emotional cues using sentiment and emotion analysis to infer mood and dynamically generate recommendations",
+      "Built fully functional frontend and application logic with emotion detection from free-text input and dynamic song/playlist recommendation system",
+      "Integrated Spotify API with fallback support planned for Last.fm, designed with API abstraction to allow alternative providers or mock data",
+      "Created responsive UI with Angular components, reactive forms, RxJS observables, and routing for seamless user experience",
+      "Implemented NLP-driven personalization and reactive frontend architecture prioritizing emotional intelligence and user mood adaptation",
+      "Application complete from frontend and logic perspective, with third-party API usage currently constrained by Spotify API quota limitations",
     ],
   },
 ];
