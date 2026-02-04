@@ -78,6 +78,32 @@ export default function ProjectDetail() {
             </ul>
           </div>
 
+          {project.slides && project.embedSlides && (
+            <div className="border border-zinc-200 rounded-2xl p-8 sm:p-12">
+              <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 mb-8">
+                Project Presentation
+              </h2>
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(window.location.origin + project.slides)}`}
+                  className="absolute top-0 left-0 w-full h-full border-0 rounded-lg"
+                  frameBorder="0"
+                  title="Project Presentation"
+                  allowFullScreen
+                />
+              </div>
+              <p className="mt-4 text-sm text-zinc-500">
+                <a 
+                  href={project.slides}
+                  download
+                  className="hover:text-zinc-900 transition-colors"
+                >
+                  Download presentation ↓
+                </a>
+              </p>
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-4 pt-4">
             {project.github && (
               <a

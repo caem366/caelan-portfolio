@@ -9,6 +9,7 @@ export interface Project {
   live?: string;
   figma?: string;
   slides?: string;
+  embedSlides?: boolean;
   inProgress?: boolean;
 }
 
@@ -79,7 +80,9 @@ export const projects: Project[] = [
       "Connected OCR output to form fields with validation and fallback editing to improve accuracy and user control",
       "Completed within a 7-day sprint, balancing frontend design, AI integration, and basic backend setup",
     ],
+    github: "https://github.com/caem366/ai-form-filler",
     slides: "/AI-Powered-Form-OCR.pptx",
+    embedSlides: true,
   },
   {
     slug: "campusbites",
