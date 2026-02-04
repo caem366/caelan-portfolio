@@ -134,4 +134,27 @@ export const projects: Project[] = [
       "Using Postman for API testing and GitHub for version control and project management",
     ],
   },
+  {
+    slug: "mood-music-app",
+    title: "Mood-Based Music Recommendation App",
+    tagline: "Web app that suggests songs based on user mood using emotion detection from text input",
+    role: "Full Stack Developer",
+    inProgress: true,
+    stack: [
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "Angular Reactive Forms",
+      "Spotify API",
+      "Last.fm API",
+      "Sentiment Analysis",
+      "HTML/CSS",
+    ],
+    highlights: [
+      "Building web app that suggests songs based on user mood using Angular and emotion detection from text input",
+      "Implementing sentiment analysis to match user input with appropriate music via Spotify or Last.fm API",
+      "Designing responsive UI with Angular components and reactive forms for smooth user interaction",
+      "Working with observables, routing, and API integration to ensure dynamic playlist generation",
+    ],
+  },
 ];
