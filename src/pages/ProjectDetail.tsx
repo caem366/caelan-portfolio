@@ -112,6 +112,17 @@ export default function ProjectDetail() {
                 View Design
               </a>
             )}
+            {project.slides && (
+              <a
+                href={project.slides}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-zinc-900 border border-zinc-200 rounded-xl transition-colors hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4"
+                aria-label={`Download ${project.title} presentation (opens in new tab)`}
+              >
+                View Presentation
+              </a>
+            )}
           </div>
         </div>
       </main>
