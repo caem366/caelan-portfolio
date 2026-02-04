@@ -107,7 +107,6 @@ export const projects: Project[] = [
       "Planning future features including user authentication, data visualization, and favorites functionality",
       "Managing project structure with frontend/backend separation and version control using GitHub",
     ],
-    github: "https://github.com/caem366/campus_bites",
   },
   {
     slug: "campusbites",
@@ -134,6 +133,7 @@ export const projects: Project[] = [
       "Building RESTful API backend with Node.js and Express to manage vendor data, orders, and menu availability",
       "Using Postman for API testing and GitHub for version control and project management",
     ],
+    github: "https://github.com/caem366/campus_bites",
   },
   {
     slug: "mood-music-app",
