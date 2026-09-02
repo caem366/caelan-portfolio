@@ -27,7 +27,7 @@ export default function Navbar() {
           <NavLink to="/projects" className={({ isActive }) => `transition-colors hover:text-[var(--accent)] ${isActive ? "text-[var(--accent)]" : ""}`}>Projects</NavLink>
           <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--accent)]">Resume</a>
           <a href="https://github.com/caem366" target="_blank" rel="noopener noreferrer" className="hidden transition-colors hover:text-[var(--accent)] sm:inline">GitHub</a>
-          <button type="button" onClick={toggleTheme} className="theme-toggle" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☼" : "◐"}</span></button>
+          <button type="button" onClick={toggleTheme} data-analytics-event="theme_toggle" data-analytics-value={theme === "dark" ? "light" : "dark"} className="theme-toggle" aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☼" : "◐"}</span></button>
         </div>
       </div>
     </nav>
