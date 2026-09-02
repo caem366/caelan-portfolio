@@ -1,51 +1,20 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ProjectArtwork from "../components/ProjectArtwork";
+import { projects } from "../data/projects";
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/40">
-      <Navbar />
-      
-      <main className="mx-auto max-w-3xl px-6 py-24 sm:px-8 sm:py-32 lg:py-48">
-        <div className="space-y-12">
-          <div className="space-y-8">
-            <p className="text-sm font-medium tracking-wide text-blue-600 uppercase">
-              Software Engineer
-            </p>
-            
-            <h1 className="text-5xl font-bold tracking-tight text-zinc-900 sm:text-6xl lg:text-7xl leading-[1.1]">
-              Caelan Mason
-            </h1>
-            
-            <p className="text-lg leading-relaxed text-zinc-600 sm:text-xl max-w-2xl">
-              I build practical, user-centered web applications with clean interfaces 
-              and thoughtful experiences. Currently focused on creating tools that make 
-              everyday tasks simpler and more intuitive.
-            </p>
-          </div>
-          
-          <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:gap-4">
-            <Link
-              to="/projects"
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl transition-all hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4"
-            >
-              View Projects
-            </Link>
-            
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-blue-700 border-2 border-blue-200 rounded-xl transition-all hover:bg-blue-50 hover:border-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4"
-              aria-label="View resume (opens in new tab)"
-            >
-              Resume
-            </a>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+  const featuredProjects = projects.filter((project) => ["clinical-trial-tracker", "whoosh", "mood-music-app"].includes(project.slug));
+
+  return <div className="site-shell overflow-hidden"><Navbar />
+    <main className="site-main relative py-20 sm:py-28 lg:py-36">
+      <div aria-hidden="true" className="absolute -top-36 right-[-10rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle_at_35%_40%,rgba(219,98,178,.14),transparent_35%),radial-gradient(circle_at_68%_52%,rgba(77,145,220,.16),transparent_42%),radial-gradient(circle_at_40%_78%,rgba(231,133,109,.12),transparent_42%)] blur-3xl" />
+      <section className="relative grid items-end gap-12 lg:grid-cols-[1.3fr_.7fr]">
+        <div className="reveal"><p className="eyebrow">Product · Software · AI</p><h1 className="display mt-6 max-w-4xl text-6xl leading-[.88] sm:text-8xl lg:text-[7.8rem]">Building useful things<br /><em className="hero-emphasis">with care.</em></h1><p className="mt-9 max-w-xl text-lg leading-8 text-[var(--muted)] sm:text-xl">I’m Caelan, a software engineer who turns complex workflows into clear, practical web products—from AI-powered tools to finance and health-tech applications.</p><div className="mt-10 flex flex-wrap gap-3"><Link to="/projects" className="button-primary">Explore projects <span className="ml-2">↗</span></Link><a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="button-secondary">View resume</a></div></div>
+        <aside className="reveal reveal-delay border-l border-[var(--line-strong)] pl-6 pb-1 lg:mb-3"><p className="eyebrow">Based in</p><p className="display mt-3 text-4xl leading-none">Toronto<br />Canada</p><p className="mt-6 text-sm leading-6 text-[var(--muted)]">I care about the details that make a product easier to understand, use, and trust.</p></aside>
+      </section>
+      <section className="mt-24 border-t border-[var(--line)] pt-5 sm:mt-32"><div className="flex items-center justify-between text-[.68rem] font-bold uppercase tracking-[.14em] text-[var(--muted)]"><span>Featured projects</span><Link className="text-[var(--accent)] hover:underline" to="/projects">All projects →</Link></div><div className="mt-7 grid gap-6 lg:grid-cols-2">{featuredProjects.map((project, index) => { const projectIndex = projects.findIndex(({ slug }) => slug === project.slug); return <article key={project.slug} className={`group overflow-hidden border border-[var(--line)] bg-[var(--surface)] ${index === 0 ? "lg:col-span-2 lg:grid lg:grid-cols-[1.2fr_.8fr]" : index === 2 ? "lg:col-start-2" : ""}`}><div className={`relative min-h-64 overflow-hidden border-b border-[var(--line)] ${index === 0 ? "lg:order-2 lg:border-b-0 lg:border-l" : ""}`}><ProjectArtwork index={projectIndex} /><p className="eyebrow absolute left-5 top-5 text-[var(--art-label)]">Featured / {String(index + 1).padStart(2, "0")}</p></div><div className={`p-6 sm:p-8 ${index === 0 ? "lg:order-1 lg:flex lg:flex-col lg:justify-between" : ""}`}><div><h2 className="display text-4xl leading-[.95]">{project.title}</h2><p className="mt-4 text-sm leading-6 text-[var(--muted)]">{project.tagline}</p></div><div className="mt-8 grid gap-4 border-t border-[var(--line)] pt-4 text-xs sm:grid-cols-2"><div><p className="eyebrow">Role</p><p className="mt-2 text-[var(--text)]">{project.role}</p></div><div><p className="eyebrow">Stack</p><p className="mt-2 leading-5 text-[var(--muted)]">{project.stack.slice(0, 4).join(" · ")}</p></div></div><Link to={`/projects/${project.slug}`} className="mt-7 inline-flex w-fit items-center text-xs font-bold uppercase tracking-[.12em] text-[var(--accent)] hover:underline">View case study <span className="ml-2">↗</span></Link></div></article>; })}</div></section>
+    </main><Footer />
+  </div>;
 }

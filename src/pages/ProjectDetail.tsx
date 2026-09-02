@@ -758,10 +758,10 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="site-shell">
       <Navbar />
 
-      <main className="mx-auto max-w-4xl px-6 py-16 sm:px-8 sm:py-24 lg:py-32">
+      <main className="mx-auto max-w-4xl px-6 py-16 sm:px-8 sm:py-24 lg:py-28">
         <Link
           to="/projects"
           className="inline-flex items-center text-sm text-zinc-600 hover:text-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4 rounded-sm"
@@ -773,7 +773,7 @@ export default function ProjectDetail() {
         <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
           <div className="space-y-6">
             <div className="flex items-start justify-between gap-4">
-              <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl leading-tight">
+              <h1 className="display text-5xl leading-[.95] sm:text-7xl">
                 {project.title}
               </h1>
               {project.inProgress && (
@@ -782,7 +782,7 @@ export default function ProjectDetail() {
                 </span>
               )}
             </div>
-            <p className="text-lg leading-relaxed text-zinc-600">{project.tagline}</p>
+            <p className="max-w-3xl text-lg leading-relaxed text-zinc-600">{project.tagline}</p>
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -821,6 +821,37 @@ export default function ProjectDetail() {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {project.figma && (
+            <div className="border border-zinc-200 rounded-2xl p-5 sm:p-8">
+              <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
+                    Design Preview
+                  </h2>
+                  <p className="mt-2 text-sm text-zinc-600">
+                    Explore the interactive Figma design.
+                  </p>
+                </div>
+                <a
+                  href={project.figma}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold uppercase tracking-wide text-zinc-600 transition-colors hover:text-zinc-900"
+                >
+                  Open in Figma ↗
+                </a>
+              </div>
+              <div className="relative w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50" style={{ paddingBottom: "62.5%" }}>
+                <iframe
+                  src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figma)}`}
+                  className="absolute inset-0 h-full w-full border-0"
+                  title={`${project.title} Figma design`}
+                  allowFullScreen
+                />
+              </div>
             </div>
           )}
 
@@ -869,17 +900,6 @@ export default function ProjectDetail() {
                 aria-label={`View ${project.title} live demo (opens in new tab)`}
               >
                 Live Demo
-              </a>
-            )}
-            {project.figma && (
-              <a
-                href={project.figma}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-zinc-900 border border-zinc-200 rounded-xl transition-colors hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4"
-                aria-label={`View ${project.title} design on Figma (opens in new tab)`}
-              >
-                View Design
               </a>
             )}
             {project.slides && (
