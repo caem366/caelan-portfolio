@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -365,7 +365,7 @@ function DecisionCard({
     <button
       type="button"
       onClick={onClick}
-      className={`text-left border border-l-4 rounded-xl p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4 ${
+      className={`mood-decision-card text-left border border-l-4 rounded-xl p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4 ${
         isOpen ? accent.border : `border-zinc-200 ${accent.rule} ${accent.hover}`
       }`}
       aria-expanded={isOpen}
@@ -386,19 +386,19 @@ function DecisionCard({
 
       {isOpen && (
         <span className="mt-5 grid gap-4 text-sm leading-relaxed text-zinc-600">
-          <span>
+          <span className="decision-detail decision-problem">
             <span className="block font-semibold text-zinc-900">Problem</span>
             {item.problem}
           </span>
-          <span>
+          <span className="decision-detail decision-choice">
             <span className="block font-semibold text-zinc-900">Decision</span>
             {item.decision}
           </span>
-          <span>
+          <span className="decision-detail decision-why">
             <span className="block font-semibold text-zinc-900">Why</span>
             {item.why}
           </span>
-          <span>
+          <span className="decision-detail decision-tradeoff">
             <span className="block font-semibold text-zinc-900">Tradeoff</span>
             {item.tradeoff}
           </span>
@@ -417,7 +417,7 @@ function MoodMusicEnhancements({ highlights }: { highlights: string[] }) {
   const activeScore = scoringExamples[scoreMode];
 
   return (
-    <div className="space-y-12 sm:space-y-16">
+    <div className="mood-case-study space-y-12 sm:space-y-16">
       <section className="border-l-4 border-indigo-200 bg-indigo-50/30 pl-8 pr-6 py-5 rounded-r-2xl">
         <h2 className="text-xs font-semibold uppercase tracking-wide text-zinc-500 mb-3">
           What I Was Trying To Build
@@ -544,7 +544,7 @@ function MoodMusicEnhancements({ highlights }: { highlights: string[] }) {
             ].map(([stage, strength, problem]) => (
               <div
                 key={stage}
-                className={`rounded-xl border border-l-4 p-5 ${
+                className={`mood-evolution-stage rounded-xl border border-l-4 p-5 ${
                   stage.startsWith("V1")
                     ? "border-zinc-200 border-l-indigo-200 bg-indigo-50/20"
                     : stage.startsWith("V2")
@@ -681,7 +681,7 @@ function MoodMusicEnhancements({ highlights }: { highlights: string[] }) {
           </div>
         </div>
 
-        <div className="border border-zinc-200 rounded-2xl p-8 sm:p-10">
+        <div className="mood-architecture border border-zinc-200 rounded-2xl p-8 sm:p-10">
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
             Architecture
           </h2>
@@ -748,10 +748,105 @@ function MoodMusicEnhancements({ highlights }: { highlights: string[] }) {
   );
 }
 
+export function TimeManagementCaseStudyLegacy() {
+  const themes = ["Lack of structure & organization", "Overloaded schedules & prioritizing", "Procrastination & last-minute work", "Distraction & maintaining focus", "Stress & mental exhaustion", "Wellness habits under pressure"];
+  const moments = [
+    ["What do I need to do today?", "Plan", "Assignments, tasks, deadlines, study sessions, and breaks are organized together so the next step is easier to see."],
+    ["I need to actually focus.", "Focus", "A timer-led study session gives concentrated work a clear start and finish while keeping the interaction lightweight."],
+    ["I've been working too long.", "Recover", "Break and self-care prompts make recovery part of the flow instead of an afterthought students must remember."],
+    ["How am I doing?", "Reflect", "Progress, streak, and quick mood or stress input make consistency and wellbeing visible without becoming another obligation."],
+  ];
+
+  return <div className="time-case-study">
+    <section className="time-case-hero">
+      <div className="time-case-art" aria-hidden="true"><i /><i /><i /><b /><em /></div>
+      <div><p className="eyebrow">UX case study · Student productivity</p><h1 className="display">Time Management &amp;<br />Burnout Prevention</h1><p>Designing a student productivity experience that treats time management and wellbeing as connected problems.</p></div>
+    </section>
+    <section className="time-overview" aria-label="Project overview"><div><span>Role</span><strong>UX/UI Designer</strong></div><div><span>Project type</span><strong>UX Research + Product Design</strong></div><div><span>Tools</span><strong>Figma</strong></div><div><span>Methods</span><strong>Surveys, Contextual Inquiry, Brainstorming, Personas, Crazy 8s, Wireframing, Prototyping</strong></div></section>
+    <section className="time-case-section time-problem"><span>01 · The problem</span><div><h2 className="display">Productivity was not the whole story.</h2><div><p>Initial student research surfaced overloaded schedules, procrastination, difficulty prioritizing, and the challenge of balancing academics with personal activities. It also surfaced stress, mental exhaustion, and wellbeing habits that dropped away during demanding periods.</p><strong>Time management wasn’t isolated from burnout—poor organization, competing responsibilities, distraction, and stress reinforced one another.</strong></div></div></section>
+    <section className="time-case-section"><span>02 · Research</span><h2 className="display">Listening before narrowing the product.</h2><div className="time-methods"><article><b>01</b><h3>Survey</h3><p>Used to understand broad struggles experienced by university students and narrow the research focus.</p></article><i /><article><b>02</b><h3>Contextual Inquiry</h3><p>Interviews were conducted with university students from different schools and programs, with an additional student observed during their daily routine.</p></article><i /><article><b>03</b><h3>Brainstorming</h3><p>Small sessions with students were used to surface recurring challenges and themes.</p></article></div></section>
+    <section className="time-patterns"><span>03 · Synthesis</span><h2 className="display">Patterns started<br />repeating.</h2><div className="time-theme-cloud">{themes.map((theme, index) => <b key={theme} className={`time-theme theme-${index}`}>{theme}</b>)}</div><div className="time-impact"><div><b>Disorganization</b><i>↓</i><b>Procrastination / overload</b><i>↓</i><b>Stress</b><i>↓</i><b>Reduced wellbeing</b></div><p><strong>The productivity problem was also a wellbeing problem.</strong> Students frequently connected poor organization with stress, concentration problems, and difficulty maintaining healthy routines.</p></div></section>
+    <section className="time-case-section"><span>04 · Student contexts</span><h2 className="display">Two moments of student life, one connected need.</h2><div className="time-contexts"><article><small>Upper-year context</small><h3>The multitasking upper-year student</h3><p>Balancing full-time study with work and academic, financial, social, and career responsibilities. They want structure without sacrificing wellbeing.</p></article><article><small>First-year context</small><h3>The first-year student adjusting to independence</h3><p>Developing new routines amid distraction and noisy environments while learning to balance school and social life.</p></article></div><div className="time-refined"><span>Refined problem</span><strong>Students need an integrated support system focused on time management, reducing burnout, and improving wellness.</strong></div></section>
+    <section className="time-case-section"><span>05 · Product direction</span><h2 className="display">One experience, three ways to help.</h2><div className="time-pillars"><article><b>Plan</b><p>Organize assignments, tasks, study sessions, deadlines, and breaks.</p></article><article><b>Focus</b><p>Create focused study sessions and reduce distractions.</p></article><article><b>Recover</b><p>Encourage breaks, self-care activities, and awareness of wellbeing.</p></article></div></section>
+    <section className="time-process"><span>06 · Exploring the flow</span><div><h2 className="display">Before polishing screens,<br />we explored possibilities.</h2><p>Crazy 8 sketches and paper low-fidelity screens helped the team explore several interface approaches before consolidating them into a mobile flow.</p></div><div className="time-progression"><b>Crazy 8s</b><i>→</i><b>Low fidelity</b><i>→</i><b>Wireframes</b><i>→</i><b>Interactive prototype</b></div></section>
+    <section className="time-case-section"><span>07 · Interface rationale</span><h2 className="display">Research shaped the interface—not just the feature list.</h2><div className="time-decisions"><article><h3>Direct manipulation</h3><p>Tasks, timers, and interactive elements use simple actions such as tapping and toggling to keep progress visible and actions immediate.</p></article><article><h3>Familiar metaphors</h3><p>Calendar for scheduling, clock for focus sessions, fire for streaks, and emoji for quick mood and stress input reduce the effort required to learn the system.</p></article><article><h3>Less cognitive load</h3><p>Whitespace, hierarchy, and familiar patterns deliberately make the experience easier to scan when students already feel overloaded.</p></article><article><h3>Motivation without complexity</h3><p>Bright accents and lightweight gamification support engagement without making productivity feel like another demanding system.</p></article></div></section>
+    <section className="time-final"><span>08 · The prototype</span><h2 className="display">Designed around the moments<br />that make a day feel manageable.</h2><div>{moments.map(([need, label, response]) => <article key={need}><small>{label}</small><h3>“{need}”</h3><div className="time-screen-label">Screen: {label}</div><p><strong>Design response → </strong>{response}</p></article>)}</div></section>
+    <section className="time-reflection"><div><span>09 · Reflection</span><h2 className="display">What this process clarified.</h2></div><div><p>Research can reveal a different underlying problem than the one a project starts with. Here, it showed that productivity and wellbeing should not necessarily be designed as separate experiences.</p><p>It also reinforced how familiar interactions can lower cognitive effort, and how early sketching creates room to explore before committing to polished UI.</p><h3>What I would explore next</h3><ul><li>Which wellness interventions feel useful rather than annoying?</li><li>When does productivity gamification motivate—and when does it become pressure itself?</li><li>Which dashboard information helps without adding cognitive overload?</li></ul></div></section>
+  </div>;
+}
+
+function TimeManagementCaseStudy({ figma }: { figma?: string }) {
+  const themes = ["Lack of structure and organization", "Overloaded schedules", "Procrastination and last-minute work", "Difficulty prioritizing assignments", "Distraction and focus problems", "Stress and mental exhaustion", "Wellness neglected during busy periods"];
+  const moments = [
+    ["What do I need to do today?", "Dashboard, schedule, and task organization"],
+    ["I need to focus.", "Focus timer and study session"],
+    ["I'm getting overwhelmed.", "Breaks, mood input, and wellness support"],
+    ["How am I doing?", "Streaks, progress, and mood tracking"],
+  ];
+  const prototypeUrl = figma?.replace("https://www.figma.com/design/", "https://www.figma.com/proto/");
+  const prototypeEmbedUrl = prototypeUrl
+    ? `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(prototypeUrl)}`
+    : undefined;
+  const [activeArtifact, setActiveArtifact] = useState<{ src: string; alt: string; caption: string } | null>(null);
+
+  useEffect(() => {
+    const figures = Array.from(document.querySelectorAll<HTMLElement>(".time-evidence-case figure"));
+    const cleanups = figures.map((figure) => {
+      const image = figure.querySelector("img");
+      if (!image) return () => undefined;
+      const open = () => setActiveArtifact({
+        src: image.currentSrc || image.src,
+        alt: image.alt,
+        caption: figure.querySelector("figcaption")?.textContent ?? image.alt,
+      });
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          open();
+        }
+      };
+      figure.tabIndex = 0;
+      figure.setAttribute("role", "button");
+      figure.setAttribute("aria-label", `Open enlarged artifact: ${image.alt}`);
+      figure.addEventListener("click", open);
+      figure.addEventListener("keydown", onKeyDown);
+      return () => {
+        figure.removeEventListener("click", open);
+        figure.removeEventListener("keydown", onKeyDown);
+      };
+    });
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, []);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveArtifact(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
+  return <div className="time-evidence-case">
+    <section className="time-case-hero"><div className="time-case-art" aria-hidden="true"><i /><i /><i /><b /><em /></div><div><p className="eyebrow">UX case study &middot; Student productivity</p><h1 className="display">Time Management &amp;<br />Burnout Prevention</h1><p>Designing a student productivity experience that treats time management and wellbeing as connected problems.</p></div></section>
+    <section className="time-overview"><div><span>Role</span><strong>UX/UI Designer</strong></div><div><span>Project type</span><strong>UX Research + Product Design</strong></div><div><span>Tools</span><strong>Figma</strong></div><div><span>Methods</span><strong>Surveys, Contextual Inquiry, Brainstorming, Personas, Crazy 8s, Wireframing, Prototyping</strong></div></section>
+    <section className="time-evidence-section time-problem"><span>01 &middot; The problem</span><div><h2 className="display">Productivity was not the whole story.</h2><div><p>Across the student research, overloaded schedules, procrastination, difficulty prioritizing, balancing academics and personal activities, stress, and mental exhaustion were interconnected. During demanding periods, physical and mental wellbeing often slipped behind academic demands.</p><strong>Time management was not isolated from burnout. Poor organization, competing responsibilities, distraction, and stress reinforced one another.</strong></div></div></section>
+    <section className="time-evidence-section"><span>02 &middot; Research</span><h2 className="display">Listening before narrowing the product.</h2><div className="time-methods"><article><b>01</b><h3>Survey</h3><p>Used to identify broad struggles university students faced before narrowing the problem space.</p></article><i /><article><b>02</b><h3>Contextual Inquiry</h3><p>Four university students from different schools and programs were interviewed; one student was observed through a day in their life while being interviewed.</p></article><i /><article><b>03</b><h3>Brainstorming</h3><p>Small sessions with 3-5 university students surfaced shared challenges and recurring terms.</p></article></div><div className="time-evidence-grid"><figure><img src="/images/time-management/research-artifact-4.png" alt="Original student interview notes" /><figcaption>Original interview notes. The research began with broad student problems rather than a predetermined app feature.</figcaption></figure><figure><img src="/images/time-management/research-artifact-3.png" alt="Original contextual inquiry notes" /><figcaption>Original contextual inquiry notes from students in different programs and living situations.</figcaption></figure></div></section>
+    <section className="time-patterns"><span>03 &middot; Synthesis</span><h2 className="display">Patterns started<br />repeating.</h2><figure className="time-affinity"><img src="/images/time-management/research-artifact-2.png" alt="Original brainstorming affinity map of student problems" /><figcaption>Original brainstorming map. Time management, distraction and focus, wellness, finances, and support were mapped as connected student problems.</figcaption></figure><div className="time-theme-cloud">{themes.map((theme, index) => <b key={theme} className={`time-theme theme-${index}`}>{theme}</b>)}</div><div className="time-impact"><div><b>Disorganization</b><i>&darr;</i><b>Procrastination / overload</b><i>&darr;</i><b>Stress</b><i>&darr;</i><b>Reduced wellbeing</b></div><p><strong>The productivity problem was also a wellbeing problem.</strong> Students connected poor organization with stress, concentration problems, and difficulty maintaining healthy routines.</p></div></section>
+    <section className="time-evidence-section"><span>04 &middot; Personas and problem statement</span><h2 className="display">Two specific student contexts shaped the direction.</h2><div className="time-personas"><article><small>Sophia &middot; 22 &middot; Fourth year</small><h3>Off campus and working part time</h3><p>Balancing school, work, finances, and wellness. Her need for a daily structure that still makes room for recovery informed the combined schedule, task, and wellness direction.</p></article><article><small>Marcus &middot; 18 &middot; First year</small><h3>In a dorm, adjusting to independence</h3><p>Managing distraction, routine, budgeting, focus, and a new social environment. His context reinforced simple mobile interactions, focus sessions, and reminders.</p></article></div><div className="time-refined"><span>Original problem statement</span><strong>Students need an integrated student support system focused on time management, reducing burnout, and improving wellness.</strong></div></section>
+    <section className="time-evidence-section"><span>05 &middot; Product direction</span><h2 className="display">Research narrowed the opportunities.</h2><div className="time-pillars"><article><b>Plan</b><p>Organize assignments, schedules, deadlines, and breaks.</p></article><article><b>Focus</b><p>Support study sessions and reduce distractions.</p></article><article><b>Recover</b><p>Use reminders, self-care suggestions, and mood or stress awareness to protect wellbeing.</p></article></div></section>
+    <section className="time-process"><span>06 &middot; From rough ideas to a mobile flow</span><div><h2 className="display">Before polishing screens,<br />we explored possibilities.</h2><p>The original sketches and paper screens explored task planning, focus sessions, progress, and wellness before the direction was consolidated into Figma.</p></div><div className="time-progression"><b>Crazy 8 sketches</b><i>&rarr;</i><b>Paper prototype</b><i>&rarr;</i><b>Low-fidelity wireframes</b></div><div className="time-process-images"><figure><img src="/images/time-management/presentation-extracts/image-00.jpg" alt="Original Crazy 8 sketch sheet" /><figcaption>Crazy 8 sketches</figcaption></figure><figure><img src="/images/time-management/presentation-extracts/image-02.jpg" alt="Original paper prototype" /><figcaption>Paper prototype</figcaption></figure><figure><img src="/images/time-management/presentation-extracts/image-03.jpg" alt="Original low-fidelity wireframe sheet" /><figcaption>Low-fidelity wireframes</figcaption></figure></div><div className="time-lowfi"><div><h3>Testing the core flow in low fidelity.</h3><p>These wireframes defined the structure and interaction flow before visual polish.</p></div><div className="time-lowfi-gallery">{moments.map(([need], index) => <figure key={need}><img src={["/images/time-management/final-screens/dashboard.jpg", "/images/time-management/final-screens/focus.jpg", "/images/time-management/final-screens/break.jpg", "/images/time-management/final-screens/progress.jpg"][index]} alt={`Low-fidelity wireframe: ${need}`} /><figcaption>{need}</figcaption></figure>)}</div></div></section>
+    <section className="time-evidence-section"><span>07 &middot; Interface rationale</span><h2 className="display">The interface was designed for overloaded students.</h2><div className="time-decisions"><article><h3>Direct manipulation</h3><p>Tasks, timers, charts, and toggles use direct touch. Simple taps start sessions, update tasks, and respond to alerts or notifications.</p></article><article><h3>Recognizable metaphors</h3><p>Calendar for scheduling, clock and progress bars for time, fire for streaks, and emoji for mood or stress input make the interface easier to interpret.</p></article><article><h3>Reducing cognitive load</h3><p>White space and a clear hierarchy improve readability when students feel overwhelmed or mentally exhausted.</p></article><article><h3>Guiding attention</h3><p>Bright colors guide attention and maintain engagement without turning the experience into another demanding system.</p></article></div><figure className="time-moodboard"><img src="/images/time-management/presentation-extracts/image-05.jpg" alt="Original Time Management and Burnout System moodboard" /><figcaption>Original moodboard: palette, icon metaphors, interaction references, and interface inspiration.</figcaption></figure></section>
+    <section className="time-final"><span>08 &middot; Final interactive prototype</span><h2 className="display">From structure to the final interactive prototype.</h2><p>The final experience is available to explore in Figma.</p>{prototypeUrl && prototypeEmbedUrl && <><div className="time-figma-embed"><iframe title="Time Management and Burnout Prevention interactive Figma prototype" src={prototypeEmbedUrl} loading="lazy" allowFullScreen /></div><a className="time-figma-link" href={prototypeUrl} target="_blank" rel="noopener noreferrer">Open in Figma <span aria-hidden="true">{"\u2197"}</span></a></>}</section>
+    <section className="time-reflection"><div><span>09 &middot; Reflection</span><h2 className="display">What this process clarified.</h2></div><div><p>Research revealed that productivity and wellbeing should not necessarily be designed as separate experiences. Familiar interaction patterns and early sketching helped reduce cognitive effort before the UI became polished.</p><h3>What I would explore next</h3><ul><li>Which wellness interventions feel useful rather than annoying?</li><li>How much gamification motivates before it becomes pressure itself?</li><li>Which dashboard information helps without creating additional cognitive overload?</li></ul></div></section>
+    {activeArtifact && <div className="artifact-lightbox" role="presentation" onMouseDown={() => setActiveArtifact(null)}><div className="artifact-lightbox-dialog" role="dialog" aria-modal="true" aria-label={activeArtifact.alt} onMouseDown={(event) => event.stopPropagation()}><button type="button" onClick={() => setActiveArtifact(null)} className="artifact-lightbox-close" aria-label="Close enlarged artifact">Close <span aria-hidden="true">&times;</span></button><img src={activeArtifact.src} alt={activeArtifact.alt} /><p>{activeArtifact.caption}</p></div></div>}
+  </div>;
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = projects.find((p) => p.slug === slug);
   const isMoodMusicProject = project?.slug === "mood-music-app";
+  const isTimeManagementProject = project?.slug === "burnout-app";
 
   if (!project) {
     return <Navigate to="/projects" replace />;
@@ -761,7 +856,7 @@ export default function ProjectDetail() {
     <div className="site-shell">
       <Navbar />
 
-      <main className="mx-auto max-w-4xl px-6 py-16 sm:px-8 sm:py-24 lg:py-28">
+      <main className={`mx-auto px-6 py-16 sm:px-8 sm:py-24 lg:py-28 ${isTimeManagementProject ? "max-w-6xl time-project-page" : "max-w-4xl"} ${isMoodMusicProject ? "mood-project-page" : ""}`}>
         <Link
           to="/projects"
           className="inline-flex items-center text-sm text-zinc-600 hover:text-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4 rounded-sm"
@@ -770,8 +865,8 @@ export default function ProjectDetail() {
           Back to Projects
         </Link>
 
-        <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
-          <div className="space-y-6">
+        {isTimeManagementProject ? <div className="mt-10 sm:mt-14"><TimeManagementCaseStudy figma={project.figma} /></div> : <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
+          <div className={`space-y-6 ${isMoodMusicProject ? "mood-project-hero" : ""}`}>
             <div className="flex items-start justify-between gap-4">
               <h1 className="display text-5xl leading-[.95] sm:text-7xl">
                 {project.title}
@@ -824,7 +919,7 @@ export default function ProjectDetail() {
             </div>
           )}
 
-          {project.figma && (
+          {project.figma && !isTimeManagementProject && (
             <div className="border border-zinc-200 rounded-2xl p-5 sm:p-8">
               <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
                 <div>
@@ -914,7 +1009,7 @@ export default function ProjectDetail() {
               </a>
             )}
           </div>
-        </div>
+        </div>}
       </main>
       <Footer />
     </div>
