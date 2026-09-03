@@ -980,7 +980,7 @@ export default function ProjectDetail() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-white bg-zinc-900 rounded-xl transition-colors hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4"
+                className="button-primary rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4"
                 aria-label={`View ${project.title} on GitHub (opens in new tab)`}
               >
                 View on GitHub
