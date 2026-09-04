@@ -112,7 +112,7 @@ export const projects: Project[] = [
     slug: "clinical-trial-tracker",
     title: "Clinical Trial Tracker Web App",
     tagline: "TrialFinder React app for finding, saving, comparing, and monitoring clinical trials from ClinicalTrials.gov",
-    role: "Full Stack Developer",
+    role: "Product Engineer",
     stack: [
       "React 18",
       "Vite",
@@ -136,8 +136,8 @@ export const projects: Project[] = [
   {
     slug: "whoosh",
     title: "WHOOSH — Split Payment Platform",
-    tagline: "Group payment-splitting platform with an immutable double-entry ledger and sandbox purchase settlement flows",
-    role: "Full Stack Developer",
+    tagline: "Case study for a standalone group-payment sandbox with ledger-backed purchase settlement flows",
+    role: "Product Engineer",
     inProgress: true,
     stack: [
       "TypeScript",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
       "Docker",
     ],
     highlights: [
-      "Built a TypeScript monorepo with a React/Vite frontend, Express API, shared package, PostgreSQL, Docker, and Drizzle migrations",
+      "Built the standalone TypeScript monorepo with a React/Vite frontend, Express API, shared package, PostgreSQL, Docker, and Drizzle migrations",
       "Designed an immutable double-entry ledger with balance validation, journal posting, audit events, and idempotency keys",
       "Implemented group APIs for member setup, ledger account creation, wallet funding, and ledger-derived balance retrieval",
       "Built sandbox purchases that validate payer funds, split equal allocations, create settlement obligations, and post related journals atomically",

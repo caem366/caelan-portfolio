@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { projects } from "../data/projects";
+import { hasWhooshDemo, hasWhooshRepository, whooshLinks } from "../config/whoosh";
 
 type DecisionCardData = {
   title: string;
@@ -748,6 +749,173 @@ function MoodMusicEnhancements({ highlights }: { highlights: string[] }) {
   );
 }
 
+function WhooshCompetitiveLandscape() {
+  const products = [
+    {
+      name: "Splitwise",
+      does: "Tracks shared expenses and helps groups settle balances later.",
+      cards: "Primarily wallet and bank-account based. The Splitwise Card spends from a Splitwise Pay balance and can top up from an eligible linked bank account.",
+      group: "Yes",
+      limitation: "It remains centered on recording expenses and settling afterwards; one person commonly still fronts the purchase.",
+      source: "https://www.splitwise.com/card",
+    },
+    {
+      name: "Cino",
+      does: "A shared virtual card that splits a group purchase at the moment of payment.",
+      cards: "Each member connects an eligible personal debit or credit card; Cino collects each share in real time. Preserving card rewards is not its central proposition.",
+      group: "Yes",
+      limitation: "Very close on real-time group splitting, but individual funding-source flexibility and rewards preservation are not the central product proposition.",
+      source: "https://support.getcino.com/hc/en-us/articles/8016692003869-How-does-Cino-work",
+    },
+    {
+      name: "Kasheesh",
+      does: "Lets one person distribute a purchase across multiple credit, debit, or prepaid cards they own.",
+      cards: "Yes. It positions Multi-Use around existing cards and rewards; its current advertised Multi-Use fee is a 2% flat fee.",
+      group: "No",
+      limitation: "It splits one person’s purchase across their own cards, rather than letting independent people participate in one group transaction.",
+      source: "https://www.kasheesh.co/features/",
+    },
+    {
+      name: "WHOOSH",
+      does: "Shared authorization and settlement infrastructure across a group.",
+      cards: "Longer-term concept: participants retain their own funding source and potentially eligible card benefits or rewards.",
+      group: "Yes",
+      limitation: "Current prototype only: authorization, allocation, ledger state, fronting, and settlement are modeled with simulated funds—no real credit cards are connected.",
+    },
+  ];
+  const researchStats = [
+    ["76%", "not fully repaid after fronting a group expense"],
+    ["55%", "experienced tension or a negative effect on a relationship"],
+    ["47%", "reported going into debt while covering group expenses"],
+  ];
+  const designDecisions = [
+    ["Request / response inspector", "Makes backend behavior visible and proves the interface is using actual API logic rather than mocked frontend state."],
+    ["Selectable fronting member", "Allows testing different group-responsibility scenarios and proves the flow is not hardcoded."],
+    ["Settlement queue", "Makes repayment obligations and asynchronous settlement behavior visible."],
+    ["Pending / settled / failed states", "Shows edge cases instead of demonstrating only a happy path."],
+    ["Retry controls", "Allows failure-recovery behavior to be tested."],
+    ["Live balances", "Shows the relationship between transaction events, ledger state, and user obligations."],
+  ];
+
+  return (
+    <div className="space-y-8">
+      <section className="border-l-4 border-[var(--accent)] bg-[var(--surface-raised)] px-6 py-7 sm:px-8">
+        <p className="eyebrow">01 — Problem</p>
+        <h2 className="display mt-3 max-w-3xl text-4xl leading-none sm:text-5xl">Group spending creates friction long after the purchase.</h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">WHOOSH started with a familiar social pattern: one person books the Airbnb, buys the tickets, or covers dinner, then has to carry both the balance and the uncomfortable job of collecting from everyone else.</p>
+        <p className="mt-5 max-w-3xl text-lg font-medium leading-relaxed text-zinc-900">“What if shared payment responsibility could be handled closer to the transaction itself?”</p>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+        <p className="eyebrow">02 — Research</p>
+        <div className="mt-4 flex flex-wrap items-end justify-between gap-5"><h2 className="display max-w-2xl text-4xl leading-none sm:text-5xl">The cost is financial and social.</h2><a href="https://www.prnewswire.com/news-releases/new-zelle-research-the-group-chat-is-lit-settling-up-is-another-story-302813530.html" target="_blank" rel="noreferrer" className="text-xs font-semibold uppercase tracking-[.12em] text-[var(--accent)] hover:underline">Source: Zelle Avoidance Economy Report ↗</a></div>
+        <div className="mt-7 grid gap-3 sm:grid-cols-3">{researchStats.map(([stat, label]) => <article key={stat} className="border border-zinc-200 bg-[var(--surface-raised)] p-5"><p className="display text-5xl leading-none text-zinc-900">{stat}</p><p className="mt-4 text-sm leading-6 text-zinc-600">{label}</p></article>)}</div>
+        <p className="mt-5 max-w-3xl text-xs leading-5 text-zinc-500">Zelle&apos;s June 2026 research reports these findings among Gen Z consumers who had fronted a group expense. The research identifies a problem space; it does not prove WHOOSH is the answer.</p>
+      </section>
+
+      <section className="border-l-4 border-[var(--accent)] bg-[var(--surface-raised)] px-6 py-6 sm:px-8">
+        <p className="eyebrow">03 — Competitive landscape</p>
+        <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">Was I recreating something that already existed?</h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">I researched existing approaches before deciding what to build: expense bookkeeping, repayment, real-time shared spending, and multi-source payment orchestration solve related—but different—problems.</p>
+      </section>
+
+      <section className="overflow-hidden rounded-2xl border border-zinc-200">
+        <div className="overflow-x-auto">
+          <table className="min-w-[940px] w-full border-collapse text-left">
+            <thead className="bg-[var(--surface-raised)] text-xs uppercase tracking-[.12em] text-zinc-500">
+              <tr>{["Product", "What it does", "Credit cards / points?", "Group-focused?", "Main limitation vs WHOOSH"].map((heading) => <th key={heading} scope="col" className="border-b border-zinc-200 px-5 py-4 font-semibold">{heading}</th>)}</tr>
+            </thead>
+            <tbody>
+              {products.map((product) => <tr key={product.name} className="align-top border-b border-zinc-200 last:border-b-0">
+                <th scope="row" className="px-5 py-5 text-base font-semibold text-zinc-900">{product.source ? <a className="underline decoration-zinc-400 underline-offset-4 hover:text-[var(--accent)]" href={product.source} target="_blank" rel="noreferrer">{product.name}</a> : product.name}</th>
+                <td className="px-5 py-5 text-sm leading-6 text-zinc-600">{product.does}</td>
+                <td className="px-5 py-5 text-sm leading-6 text-zinc-600">{product.cards}</td>
+                <td className="px-5 py-5 text-sm leading-6 text-zinc-600">{product.group}</td>
+                <td className="px-5 py-5 text-sm leading-6 text-zinc-600">{product.limitation}</td>
+              </tr>)}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 bg-[var(--surface-raised)] p-6 sm:p-8">
+        <p className="eyebrow">Market synthesis</p>
+        <div className="mt-5 grid gap-3 text-sm sm:grid-cols-4">{[["Splitwise", "Group expense coordination"], ["Cino", "Real-time group spending"], ["Kasheesh", "Multi-source payment orchestration"], ["WHOOSH", "Explores combining group coordination with individual funding-source flexibility"]].map(([name, description]) => <article key={name} className="border border-zinc-200 bg-white p-4"><p className="font-semibold text-zinc-900">{name} <span className="text-[var(--accent)]">→</span></p><p className="mt-3 leading-6 text-zinc-600">{description}</p></article>)}</div>
+        <p className="mt-6 max-w-3xl text-xl font-medium leading-relaxed text-zinc-900">“The opportunity wasn’t simply another way to split a bill. It was combining group coordination with payment-source orchestration.”</p>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+        <p className="eyebrow">04 — Product insight</p>
+        <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">“Splitting a bill” is not one problem.</h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">The market separates bookkeeping, repayment, real-time shared spending, and payment-source orchestration. I wanted to explore the infrastructure layer: how a group&apos;s responsibility could be represented throughout a transaction workflow, rather than reconstructed after one person pays.</p>
+      </section>
+
+      <section className="border-l-4 border-[var(--accent)] bg-[var(--surface-raised)] px-6 py-7 sm:px-8">
+        <p className="eyebrow">05 — Product hypothesis</p>
+        <p className="display max-w-4xl text-3xl leading-tight sm:text-4xl">“If shared payment responsibility could be represented during the transaction workflow, one person might not need to carry the entire financial and social burden of a group purchase.”</p>
+        <div className="mt-7 grid gap-3 sm:grid-cols-2">{["Simulated group transaction", "Participant allocation", "Selectable fronting member", "Ledger updates", "Owed / recoverable balances", "Settlement generation", "Failed settlements", "Retries"].map((item, index) => <p key={item} className="border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-700"><span className="mr-3 text-xs text-zinc-400">0{index + 1}</span>{item}</p>)}</div>
+        <p className="mt-5 text-sm font-semibold text-zinc-900">No real money moves in the current prototype.</p>
+      </section>
+
+      <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:p-8">
+        <p className="eyebrow text-amber-700">06 — Future infrastructure concept</p>
+        <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">A $1,200 Airbnb should not automatically become one person&apos;s $1,200 problem.</h2>
+        <div className="mt-7 grid gap-4 lg:grid-cols-2"><article className="border border-amber-200 bg-white p-5"><p className="text-xs font-semibold uppercase tracking-[.12em] text-zinc-500">Traditional</p><p className="mt-3 text-lg font-semibold text-zinc-900">Sarah&apos;s Chase Sapphire → $1,200 Airbnb charge</p><ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600"><li>Sarah carries the full $1,200.</li><li>She takes the utilization and receives eligible rewards.</li><li>She must collect $300 from each friend.</li></ul><p className="mt-5 border-t border-zinc-200 pt-4 text-sm text-zinc-600">Caelan → owes Sarah $300<br />Maya → owes Sarah $300<br />Jessica → owes Sarah $300</p></article><article className="border border-amber-300 bg-amber-100/50 p-5"><p className="text-xs font-semibold uppercase tracking-[.12em] text-amber-800">WHOOSH future concept</p><p className="mt-3 text-lg font-semibold text-zinc-900">Airbnb sees one $1,200 transaction.</p><p className="mt-4 text-sm leading-6 text-zinc-600">Behind it: Caelan&apos;s Amex → $300; Maya&apos;s Visa → $300; Jessica&apos;s Mastercard → $300; Sarah&apos;s Chase → $300.</p><p className="mt-5 text-sm font-medium leading-6 text-zinc-900">The longer-term idea is for each participant to preserve their own funding relationship and potentially eligible rewards—not to route real cards in this prototype.</p></article></div>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+        <p className="eyebrow">07 — Product &amp; UX decisions</p>
+        <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">The sandbox is designed to make the product mechanics inspectable.</h2>
+        <div className="mt-7 grid gap-3 sm:grid-cols-2">{designDecisions.map(([title, reason]) => <article key={title} className="border border-zinc-200 bg-[var(--surface-raised)] p-5"><h3 className="font-semibold text-zinc-900">{title}</h3><p className="mt-3 text-sm leading-6 text-zinc-600"><span className="font-medium text-zinc-900">Why: </span>{reason}</p></article>)}</div>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+        <p className="eyebrow">08 — How WHOOSH works</p>
+        <div className="mt-5 grid gap-3 text-sm sm:grid-cols-4">{["Create the group purchase", "Select a fronting member", "Allocate each participant’s share", "Generate obligations and settlement work"].map((label, index) => <div key={label} className="border border-zinc-200 bg-[var(--surface-raised)] p-4 text-zinc-700"><span className="text-xs text-zinc-400">0{index + 1}</span><p className="mt-3 font-medium">{label}</p></div>)}</div>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
+        <p className="eyebrow">09 — Technical architecture</p>
+        <div className="mt-5 grid gap-3 text-sm sm:grid-cols-4">{["Group setup", "Purchase authorization", "Immutable ledger", "Member settlement"].map((label, index) => <div key={label} className="border border-zinc-200 bg-[var(--surface-raised)] p-4 text-zinc-700"><span className="text-xs text-zinc-400">0{index + 1}</span><p className="mt-3 font-medium">{label}</p></div>)}</div>
+        <p className="mt-5 max-w-3xl text-sm leading-6 text-zinc-600">The prototype uses a React client, Express API, PostgreSQL, and an immutable double-entry ledger. Authorization, allocation, journal posting, and settlement are separate concerns so state can be derived, audited, and retried safely.</p>
+      </section>
+
+      <section className="whoosh-sandbox-section"><p className="eyebrow mb-4">10 — Interactive sandbox</p><WhooshCaseStudyPreview /></section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8"><p className="eyebrow">11 — Example transaction</p><h2 className="display mt-3 text-4xl leading-none sm:text-5xl">A fronted purchase becomes visible obligations.</h2><div className="mt-6 grid gap-3 sm:grid-cols-3"><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Purchase</p><p className="mt-2 font-semibold">Uber Eats · $200</p></div><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Fronting member</p><p className="mt-2 font-semibold">Caelan</p></div><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Allocation</p><p className="mt-2 font-semibold">4 people · $50 each</p></div></div><p className="mt-5 text-sm leading-6 text-zinc-600">The authorization posts the purchase and allocations. The ledger-derived state shows who owes Caelan, what is recoverable, and which settlement work remains pending.</p></section>
+
+      <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:p-8"><p className="eyebrow text-amber-700">12 — Limitations</p><p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-700">This is a developer sandbox with simulated funds—not a consumer-ready payments product. It does not connect real cards, move money, guarantee rewards, solve compliance requirements, or represent production issuing behavior.</p></section>
+
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8"><p className="eyebrow">13 — What I’d test next</p><div className="mt-5 grid gap-6 lg:grid-cols-2"><div><h2 className="text-xl font-semibold text-zinc-900">Product questions</h2><ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-600">{["Do users understand the term “fronting member”?", "Do groups prefer equal splits, percentages, or fixed amounts?", "What should happen when one participant has insufficient funds?", "Should another participant automatically cover a shortfall?", "How important is preserving individual credit-card rewards?", "Would users trust a shared virtual card?", "How should refunds and reversals work?"].map(question => <li key={question}>• {question}</li>)}</ul></div><div><h2 className="text-xl font-semibold text-zinc-900">Engineering roadmap</h2><ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-600">{["Custom split methods", "Partial funding", "Fallback rules", "Refunds / reversals", "Webhooks", "Idempotency", "API keys", "Issuing sandbox integrations"].map(item => <li key={item}>• {item}</li>)}</ul></div></div></section>
+
+    </div>
+  );
+}
+
+function WhooshCaseStudyPreview() {
+  const demoCta = hasWhooshDemo ? (
+    <a href={whooshLinks.demoUrl} target="_blank" rel="noopener noreferrer" className="button-primary rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4">
+      Launch interactive sandbox <span aria-hidden="true">↗</span>
+    </a>
+  ) : (
+    <span className="inline-flex cursor-not-allowed items-center justify-center rounded-xl border border-zinc-300 bg-zinc-100 px-8 py-4 text-sm font-medium text-zinc-500" title="Set VITE_WHOOSH_DEMO_URL to enable this external link" aria-disabled="true">
+      Launch interactive sandbox ↗
+    </span>
+  );
+
+  return (
+    <div className="space-y-8">
+      <section className="whoosh-sandbox-preview overflow-hidden rounded-2xl border bg-zinc-950">
+        <img src={whooshLinks.previewUrl} alt="WHOOSH developer sandbox showing transaction simulation, API inspector, group balances, and settlement queue" className="whoosh-sandbox-preview-image" />
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/15 px-6 py-5 text-white sm:px-8">
+          <div><h2 className="text-xl font-semibold">Interactive sandbox</h2><p className="mt-1 max-w-xl text-sm leading-6 text-white/65">I built a developer sandbox—not only polished consumer screens—to test and expose the underlying product mechanics. It runs separately from this portfolio.</p></div>
+          {demoCta}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 export function TimeManagementCaseStudyLegacy() {
   const themes = ["Lack of structure & organization", "Overloaded schedules & prioritizing", "Procrastination & last-minute work", "Distraction & maintaining focus", "Stress & mental exhaustion", "Wellness habits under pressure"];
   const moments = [
@@ -847,6 +1015,7 @@ export default function ProjectDetail() {
   const project = projects.find((p) => p.slug === slug);
   const isMoodMusicProject = project?.slug === "mood-music-app";
   const isTimeManagementProject = project?.slug === "burnout-app";
+  const isWhooshProject = project?.slug === "whoosh";
 
   if (!project) {
     return <Navigate to="/projects" replace />;
@@ -896,10 +1065,13 @@ export default function ProjectDetail() {
               Role
             </h2>
             <p className="text-base text-zinc-900">{project.role}</p>
+            {isWhooshProject && <p className="mt-2 text-sm leading-6 text-zinc-600">Product Strategy · User Research · UX Design · Full-Stack Engineering</p>}
           </div>
 
           {isMoodMusicProject ? (
             <MoodMusicEnhancements highlights={project.highlights} />
+          ) : isWhooshProject ? (
+            <WhooshCompetitiveLandscape />
           ) : (
             <div className="border border-zinc-200 rounded-2xl p-8 sm:p-12">
               <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 mb-8">
@@ -975,6 +1147,17 @@ export default function ProjectDetail() {
           )}
 
           <div className="flex flex-wrap gap-4 pt-4">
+            {isWhooshProject && hasWhooshRepository && (
+              <a
+                href={whooshLinks.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-primary rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-4"
+                aria-label="View the standalone WHOOSH repository on GitHub (opens in new tab)"
+              >
+                View WHOOSH repository
+              </a>
+            )}
             {project.github && (
               <a
                 href={project.github}

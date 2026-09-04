@@ -20,7 +20,7 @@ export default function Navbar() {
   const toggleTheme = () => setTheme((current) => current === "dark" ? "light" : "dark");
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--nav-bg)] backdrop-blur-md">
+    <nav className="sticky top-0 z-50 isolate border-b border-[var(--line)] bg-[var(--nav-bg)] backdrop-blur-md">
       <div className="mx-auto flex h-[4.75rem] w-[min(100%_-_3rem,76rem)] items-center justify-between gap-5 max-sm:w-[calc(100%-2rem)]">
         <NavLink to="/" className="shrink-0 text-sm font-bold tracking-[-.02em] text-[var(--text)] focus-visible:outline-none" aria-label="Home">CAELAN<span className="text-[var(--accent)]">.</span></NavLink>
         <div className="flex items-center gap-4 text-[.69rem] font-bold uppercase tracking-[.12em] text-[var(--muted)] sm:gap-7">
