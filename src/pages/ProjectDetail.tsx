@@ -761,11 +761,11 @@ function WhooshCompetitiveLandscape() {
     },
     {
       name: "Cino",
-does: "A shared virtual card that splits group purchases in real time at the point of payment.",
-cards: "Each member connects an eligible debit or credit card, and Cino collects each participant’s share when the group card is used.",
-group: "Yes",
-limitation: "The closest direct competitor to WHOOSH on real-time group splitting. Cino can decline the entire payment if a participant lacks sufficient funds; WHOOSH explores configurable shortfall handling, including transaction timeouts, fallback fronting, retryable obligations, and settlement recovery.",
-source: "https://support.getcino.com/hc/en-us/articles/8256935261085-Declines-due-to-insufficient-funds",
+      does: "A shared virtual card that splits group purchases in real time at the point of payment.",
+      cards: "Each member connects an eligible debit or credit card, and Cino collects each participant’s share when the group card is used.",
+      group: "Yes",
+      limitation: "The closest direct competitor to WHOOSH on real-time group splitting. Cino can decline the entire payment if a participant lacks sufficient funds; WHOOSH explores configurable shortfall handling, including transaction timeouts, fallback fronting, retryable obligations, and settlement recovery.",
+      source: "https://support.getcino.com/hc/en-us/articles/8256935261085-Declines-due-to-insufficient-funds",
     },
     {
       name: "Kasheesh",
