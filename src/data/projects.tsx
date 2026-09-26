@@ -16,8 +16,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "flow",
-    title: "Flow",
-    tagline: "Exploring an AI-native operations layer for lean DTC marketing teams running frequent launches and multi-channel campaigns.",
+    title: "Flow.",
+    tagline: "A 0→1 concept exploring how lean DTC teams could coordinate launches, creators, assets, and campaigns across their existing tools.",
     role: "Product Strategy + Product Design",
     inProgress: true,
     stack: ["0→1 Product Strategy", "Product Design", "AI Product Concept", "Discovery"],

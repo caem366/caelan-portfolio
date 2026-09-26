@@ -44,7 +44,7 @@ export default function FlowCaseStudy() {
         <div className="flow-hero-content">
           <div className="flow-hero-topline"><Status kind="concept">Discovery + concept exploration</Status><span>Product Strategy · Product Design · AI Systems</span></div>
           <h1 className="display">Flow<span>.</span></h1>
-          <p>Exploring an AI-native operations layer for lean DTC marketing teams.</p>
+          <p>AI-native marketing operations layer</p>
         </div>
       </header>
 
