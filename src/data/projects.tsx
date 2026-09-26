@@ -15,6 +15,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "flow",
+    title: "Flow",
+    tagline: "Exploring an AI-native operations layer for lean DTC marketing teams running frequent launches and multi-channel campaigns.",
+    role: "Product Strategy + Product Design",
+    inProgress: true,
+    stack: ["0→1 Product Strategy", "Product Design", "AI Product Concept", "Discovery"],
+    highlights: [
+      "A hypothesis-led exploration of cross-tool marketing operations coordination for lean DTC teams.",
+      "Proposed initial wedge: Creator PR → Launch Operations, pending primary discovery research.",
+    ],
+  },
+  {
     slug: "burnout-app",
     title: "Time Management & Burnout Prevention",
     tagline: "Designing a student productivity experience that treats time management and wellbeing as connected problems.",

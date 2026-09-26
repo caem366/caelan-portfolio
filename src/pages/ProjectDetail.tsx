@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { projects } from "../data/projects";
 import { hasWhooshDemo, hasWhooshRepository, whooshLinks } from "../config/whoosh";
+import FlowCaseStudy from "./FlowCaseStudy";
 
 type DecisionCardData = {
   title: string;
@@ -1016,6 +1017,7 @@ export default function ProjectDetail() {
   const isMoodMusicProject = project?.slug === "mood-music-app";
   const isTimeManagementProject = project?.slug === "burnout-app";
   const isWhooshProject = project?.slug === "whoosh";
+  const isFlowProject = project?.slug === "flow";
 
   if (!project) {
     return <Navigate to="/projects" replace />;
@@ -1025,7 +1027,7 @@ export default function ProjectDetail() {
     <div className="site-shell">
       <Navbar />
 
-      <main className={`mx-auto px-6 py-16 sm:px-8 sm:py-24 lg:py-28 ${isTimeManagementProject ? "max-w-6xl time-project-page" : "max-w-4xl"} ${isMoodMusicProject ? "mood-project-page" : ""}`}>
+      <main className={`mx-auto px-6 py-16 sm:px-8 sm:py-24 lg:py-28 ${isTimeManagementProject ? "max-w-6xl time-project-page" : isFlowProject ? "max-w-6xl flow-project-page" : "max-w-4xl"} ${isMoodMusicProject ? "mood-project-page" : ""}`}>
         <Link
           to="/projects"
           className="inline-flex items-center text-sm text-zinc-600 hover:text-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-4 rounded-sm"
@@ -1034,7 +1036,7 @@ export default function ProjectDetail() {
           Back to Projects
         </Link>
 
-        {isTimeManagementProject ? <div className="mt-10 sm:mt-14"><TimeManagementCaseStudy /></div> : <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
+        {isTimeManagementProject ? <div className="mt-10 sm:mt-14"><TimeManagementCaseStudy /></div> : isFlowProject ? <div className="mt-10 sm:mt-14"><FlowCaseStudy /></div> : <div className="mt-12 space-y-12 sm:mt-16 sm:space-y-16">
           <div className={`space-y-6 ${isMoodMusicProject ? "mood-project-hero" : ""}`}>
             <div className="flex items-start justify-between gap-4">
               <h1 className="display text-5xl leading-[.95] sm:text-7xl">

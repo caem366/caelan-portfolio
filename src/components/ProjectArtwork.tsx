@@ -1,4 +1,7 @@
-export default function ProjectArtwork({ index }: { index: number }) {
+export default function ProjectArtwork({ index, slug }: { index: number; slug?: string }) {
+  if (slug === "flow") {
+    return <div className="project-art editorial-art flow-art" aria-hidden="true"><i className="flow-art-orbit" /><i className="flow-art-orbit" /><i className="flow-art-path flow-art-path-a" /><i className="flow-art-path flow-art-path-b" /><i className="flow-art-node flow-art-node-a" /><i className="flow-art-node flow-art-node-b" /><i className="flow-art-node flow-art-node-c" /><span className="art-grain" /></div>;
+  }
   const art = index % 7;
   const shapes = [
     <><i className="time-band" /><i className="time-band" /><i className="time-band" /><i className="time-sun" /><i className="time-dot" /><i className="time-rule" /></>,
