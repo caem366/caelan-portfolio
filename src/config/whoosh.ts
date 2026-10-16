@@ -1,6 +1,6 @@
 const WHOOSH_REPOSITORY_URL = "https://github.com/caem366/whoosh-sandbox";
 const WHOOSH_DEMO_URL = "https://whoosh-sandbox.vercel.app/";
-const WHOOSH_PREVIEW_URL = "/images/whoosh/sandbox-preview.png";
+const WHOOSH_PREVIEW_URL = "/images/whoosh/sandbox-preview-interactive.jpeg";
 
 // These links intentionally point outside the portfolio. Set the demo URL in
 // the deployment environment when the standalone WHOOSH application is published.
