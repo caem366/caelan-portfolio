@@ -751,6 +751,8 @@ function MoodMusicEnhancements({ highlights }: { highlights: string[] }) {
 }
 
 function WhooshCompetitiveLandscape() {
+  const figmaUrl = "https://www.figma.com/file/fJ0RUvJEBpzr1F33Xp32Cg?type=design";
+  const figmaEmbedUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(figmaUrl)}`;
   const products = [
     {
       name: "Splitwise",
@@ -781,7 +783,7 @@ function WhooshCompetitiveLandscape() {
       does: "Shared authorization and settlement infrastructure across a group.",
       cards: "Longer-term concept: participants retain their own funding source and potentially eligible card benefits or rewards.",
       group: "Yes",
-      limitation: "Current prototype only: authorization, allocation, ledger state, fronting, and settlement are modeled with simulated funds—no real credit cards are connected.",
+      limitation: "Current prototype only: authorization, allocation, ledger state, fronting, and settlement are modeled with simulated funds; no real credit cards are connected.",
     },
   ];
   const researchStats = [
@@ -801,23 +803,23 @@ function WhooshCompetitiveLandscape() {
   return (
     <div className="space-y-8">
       <section className="border-l-4 border-[var(--accent)] bg-[var(--surface-raised)] px-6 py-7 sm:px-8">
-        <p className="eyebrow">01 — Problem</p>
+        <p className="eyebrow">01 / Problem</p>
         <h2 className="display mt-3 max-w-3xl text-4xl leading-none sm:text-5xl">Group spending creates friction long after the purchase.</h2>
         <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">WHOOSH started with a familiar social pattern: one person books the Airbnb, buys the tickets, or covers dinner, then has to carry both the balance and the uncomfortable job of collecting from everyone else.</p>
         <p className="mt-5 max-w-3xl text-lg font-medium leading-relaxed text-zinc-900">“What if shared payment responsibility could be handled closer to the transaction itself?”</p>
       </section>
 
       <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
-        <p className="eyebrow">02 — Research</p>
+        <p className="eyebrow">02 / Research</p>
         <div className="mt-4 flex flex-wrap items-end justify-between gap-5"><h2 className="display max-w-2xl text-4xl leading-none sm:text-5xl">The cost is financial and social.</h2><a href="https://www.prnewswire.com/news-releases/new-zelle-research-the-group-chat-is-lit-settling-up-is-another-story-302813530.html" target="_blank" rel="noreferrer" className="text-xs font-semibold uppercase tracking-[.12em] text-[var(--accent)] hover:underline">Source: Zelle Avoidance Economy Report ↗</a></div>
         <div className="mt-7 grid gap-3 sm:grid-cols-3">{researchStats.map(([stat, label]) => <article key={stat} className="border border-zinc-200 bg-[var(--surface-raised)] p-5"><p className="display text-5xl leading-none text-zinc-900">{stat}</p><p className="mt-4 text-sm leading-6 text-zinc-600">{label}</p></article>)}</div>
         <p className="mt-5 max-w-3xl text-xs leading-5 text-zinc-500">Zelle&apos;s June 2026 research reports these findings among Gen Z consumers who had fronted a group expense. The research identifies a problem space; it does not prove WHOOSH is the answer.</p>
       </section>
 
       <section className="border-l-4 border-[var(--accent)] bg-[var(--surface-raised)] px-6 py-6 sm:px-8">
-        <p className="eyebrow">03 — Competitive landscape</p>
+        <p className="eyebrow">03 / Competitive landscape</p>
         <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">Was I recreating something that already existed?</h2>
-        <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">I researched existing approaches before deciding what to build: expense bookkeeping, repayment, real-time shared spending, and multi-source payment orchestration solve related—but different—problems.</p>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">I researched existing approaches before deciding what to build: expense bookkeeping, repayment, real-time shared spending, and multi-source payment orchestration solve related but different problems.</p>
       </section>
 
       <section className="overflow-hidden rounded-2xl border border-zinc-200">
@@ -846,48 +848,66 @@ function WhooshCompetitiveLandscape() {
       </section>
 
       <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
-        <p className="eyebrow">04 — Product insight</p>
+        <p className="eyebrow">04 / Product insight</p>
         <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">“Splitting a bill” is not one problem.</h2>
         <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-600">The market separates bookkeeping, repayment, real-time shared spending, and payment-source orchestration. I wanted to explore the infrastructure layer: how a group&apos;s responsibility could be represented throughout a transaction workflow, rather than reconstructed after one person pays.</p>
       </section>
 
       <section className="border-l-4 border-[var(--accent)] bg-[var(--surface-raised)] px-6 py-7 sm:px-8">
-        <p className="eyebrow">05 — Product hypothesis</p>
+        <p className="eyebrow">05 / Product hypothesis</p>
         <p className="display max-w-4xl text-3xl leading-tight sm:text-4xl">“If shared payment responsibility could be represented during the transaction workflow, one person might not need to carry the entire financial and social burden of a group purchase.”</p>
         <div className="mt-7 grid gap-3 sm:grid-cols-2">{["Simulated group transaction", "Participant allocation", "Selectable fronting member", "Ledger updates", "Owed / recoverable balances", "Settlement generation", "Failed settlements", "Retries"].map((item, index) => <p key={item} className="border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-700"><span className="mr-3 text-xs text-zinc-400">0{index + 1}</span>{item}</p>)}</div>
         <p className="mt-5 text-sm font-semibold text-zinc-900">No real money moves in the current prototype.</p>
       </section>
 
       <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:p-8">
-        <p className="eyebrow text-amber-700">06 — Future infrastructure concept</p>
+        <p className="eyebrow text-amber-700">06 / Future infrastructure concept</p>
         <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">A $1,200 Airbnb should not automatically become one person&apos;s $1,200 problem.</h2>
-        <div className="mt-7 grid gap-4 lg:grid-cols-2"><article className="border border-amber-200 bg-white p-5"><p className="text-xs font-semibold uppercase tracking-[.12em] text-zinc-500">Traditional</p><p className="mt-3 text-lg font-semibold text-zinc-900">Sarah&apos;s Chase Sapphire → $1,200 Airbnb charge</p><ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600"><li>Sarah carries the full $1,200.</li><li>She takes the utilization and receives eligible rewards.</li><li>She must collect $300 from each friend.</li></ul><p className="mt-5 border-t border-zinc-200 pt-4 text-sm text-zinc-600">Caelan → owes Sarah $300<br />Maya → owes Sarah $300<br />Jessica → owes Sarah $300</p></article><article className="border border-amber-300 bg-amber-100/50 p-5"><p className="text-xs font-semibold uppercase tracking-[.12em] text-amber-800">WHOOSH future concept</p><p className="mt-3 text-lg font-semibold text-zinc-900">Airbnb sees one $1,200 transaction.</p><p className="mt-4 text-sm leading-6 text-zinc-600">Behind it: Caelan&apos;s Amex → $300; Maya&apos;s Visa → $300; Jessica&apos;s Mastercard → $300; Sarah&apos;s Chase → $300.</p><p className="mt-5 text-sm font-medium leading-6 text-zinc-900">The longer-term idea is for each participant to preserve their own funding relationship and potentially eligible rewards—not to route real cards in this prototype.</p></article></div>
+        <div className="mt-7 grid gap-4 lg:grid-cols-2"><article className="border border-amber-200 bg-white p-5"><p className="text-xs font-semibold uppercase tracking-[.12em] text-zinc-500">Traditional</p><p className="mt-3 text-lg font-semibold text-zinc-900">Sarah&apos;s Debit Card → $1,200 Airbnb charge</p><ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600"><li>Sarah carries the full $1,200.</li><li>She takes the utilization and receives eligible rewards.</li><li>She must collect $300 from each friend.</li></ul><p className="mt-5 border-t border-zinc-200 pt-4 text-sm text-zinc-600">Caelan → owes Sarah $300<br />Maya → owes Sarah $300<br />Jessica → owes Sarah $300</p></article><article className="border border-amber-300 bg-amber-100/50 p-5"><p className="text-xs font-semibold uppercase tracking-[.12em] text-amber-800">WHOOSH future concept</p><p className="mt-3 text-lg font-semibold text-zinc-900">Airbnb sees one $1,200 transaction.</p><p className="mt-4 text-sm leading-6 text-zinc-600">Behind it: Caelan&apos;s Amex → $300; Maya&apos;s Visa → $300; Jessica&apos;s Mastercard → $300; Sarah&apos;s Chase → $300.</p><p className="mt-5 text-sm font-medium leading-6 text-zinc-900">The longer-term idea is for each participant to preserve their own funding relationship and potentially eligible rewards, not to route real cards in this prototype.</p></article></div>
       </section>
 
       <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
-        <p className="eyebrow">07 — Product &amp; UX decisions</p>
+        <p className="eyebrow">07 / Product &amp; UX decisions</p>
         <h2 className="display mt-3 text-4xl leading-none sm:text-5xl">The sandbox is designed to make the product mechanics inspectable.</h2>
         <div className="mt-7 grid gap-3 sm:grid-cols-2">{designDecisions.map(([title, reason]) => <article key={title} className="border border-zinc-200 bg-[var(--surface-raised)] p-5"><h3 className="font-semibold text-zinc-900">{title}</h3><p className="mt-3 text-sm leading-6 text-zinc-600"><span className="font-medium text-zinc-900">Why: </span>{reason}</p></article>)}</div>
       </section>
 
       <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
-        <p className="eyebrow">08 — How WHOOSH works</p>
+        <p className="eyebrow">08 / How WHOOSH works</p>
         <div className="mt-5 grid gap-3 text-sm sm:grid-cols-4">{["Create the group purchase", "Select a fronting member", "Allocate each participant’s share", "Generate obligations and settlement work"].map((label, index) => <div key={label} className="border border-zinc-200 bg-[var(--surface-raised)] p-4 text-zinc-700"><span className="text-xs text-zinc-400">0{index + 1}</span><p className="mt-3 font-medium">{label}</p></div>)}</div>
       </section>
 
       <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8">
-        <p className="eyebrow">09 — Technical architecture</p>
+        <p className="eyebrow">09 / Technical architecture</p>
         <div className="mt-5 grid gap-3 text-sm sm:grid-cols-4">{["Group setup", "Purchase authorization", "Immutable ledger", "Member settlement"].map((label, index) => <div key={label} className="border border-zinc-200 bg-[var(--surface-raised)] p-4 text-zinc-700"><span className="text-xs text-zinc-400">0{index + 1}</span><p className="mt-3 font-medium">{label}</p></div>)}</div>
         <p className="mt-5 max-w-3xl text-sm leading-6 text-zinc-600">The prototype uses a React client, Express API, PostgreSQL, and an immutable double-entry ledger. Authorization, allocation, journal posting, and settlement are separate concerns so state can be derived, audited, and retried safely.</p>
       </section>
 
-      <section className="whoosh-sandbox-section"><p className="eyebrow mb-4">10 — Interactive sandbox</p><WhooshCaseStudyPreview /></section>
+      <section className="whoosh-sandbox-section"><p className="eyebrow mb-4">10 / Interactive sandbox</p><WhooshCaseStudyPreview /></section>
 
-      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8"><p className="eyebrow">11 — Example transaction</p><h2 className="display mt-3 text-4xl leading-none sm:text-5xl">A fronted purchase becomes visible obligations.</h2><div className="mt-6 grid gap-3 sm:grid-cols-3"><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Purchase</p><p className="mt-2 font-semibold">Uber Eats · $200</p></div><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Fronting member</p><p className="mt-2 font-semibold">Caelan</p></div><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Allocation</p><p className="mt-2 font-semibold">4 people · $50 each</p></div></div><p className="mt-5 text-sm leading-6 text-zinc-600">The authorization posts the purchase and allocations. The ledger-derived state shows who owes Caelan, what is recoverable, and which settlement work remains pending.</p></section>
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8"><p className="eyebrow">11 / Example transaction</p><h2 className="display mt-3 text-4xl leading-none sm:text-5xl">A fronted purchase becomes visible obligations.</h2><div className="mt-6 grid gap-3 sm:grid-cols-3"><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Purchase</p><p className="mt-2 font-semibold">Uber Eats · $200</p></div><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Fronting member</p><p className="mt-2 font-semibold">Caelan</p></div><div className="border border-zinc-200 p-4"><p className="text-xs text-zinc-500">Allocation</p><p className="mt-2 font-semibold">4 people · $50 each</p></div></div><p className="mt-5 text-sm leading-6 text-zinc-600">The authorization posts the purchase and allocations. The ledger-derived state shows who owes Caelan, what is recoverable, and which settlement work remains pending.</p></section>
 
-      <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:p-8"><p className="eyebrow text-amber-700">12 — Limitations</p><p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-700">This is a developer sandbox with simulated funds—not a consumer-ready payments product. It does not connect real cards, move money, guarantee rewards, solve compliance requirements, or represent production issuing behavior.</p></section>
+      <section className="rounded-2xl border border-amber-200 bg-amber-50 p-6 sm:p-8"><p className="eyebrow text-amber-700">12 / Limitations</p><p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-700">This is a developer sandbox with simulated funds, not a consumer-ready payments product. It does not connect real cards, move money, guarantee rewards, solve compliance requirements, or represent production issuing behavior.</p></section>
 
-      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8"><p className="eyebrow">13 — What I’d test next</p><div className="mt-5 grid gap-6 lg:grid-cols-2"><div><h2 className="text-xl font-semibold text-zinc-900">Product questions</h2><ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-600">{["Do users understand the term “fronting member”?", "Do groups prefer equal splits, percentages, or fixed amounts?", "What should happen when one participant has insufficient funds?", "Should another participant automatically cover a shortfall?", "How important is preserving individual credit-card rewards?", "Would users trust a shared virtual card?", "How should refunds and reversals work?"].map(question => <li key={question}>• {question}</li>)}</ul></div><div><h2 className="text-xl font-semibold text-zinc-900">Engineering roadmap</h2><ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-600">{["Custom split methods", "Partial funding", "Fallback rules", "Refunds / reversals", "Webhooks", "Idempotency", "API keys", "Issuing sandbox integrations"].map(item => <li key={item}>• {item}</li>)}</ul></div></div></section>
+      <section className="rounded-2xl border border-zinc-200 p-6 sm:p-8"><p className="eyebrow">13 / What I’d test next</p><div className="mt-5 grid gap-6 lg:grid-cols-2"><div><h2 className="text-xl font-semibold text-zinc-900">Product questions</h2><ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-600">{["Do users understand the term “fronting member”?", "Do groups prefer equal splits, percentages, or fixed amounts?", "What should happen when one participant has insufficient funds?", "Should another participant automatically cover a shortfall?", "How important is preserving individual credit-card rewards?", "Would users trust a shared virtual card?", "How should refunds and reversals work?"].map(question => <li key={question}>• {question}</li>)}</ul></div><div><h2 className="text-xl font-semibold text-zinc-900">Engineering roadmap</h2><ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-600">{["Custom split methods", "Partial funding", "Fallback rules", "Refunds / reversals", "Webhooks", "Idempotency", "API keys", "Issuing sandbox integrations"].map(item => <li key={item}>• {item}</li>)}</ul></div></div></section>
+
+      <section className="whoosh-prototype-section" aria-labelledby="whoosh-prototype-title">
+        <p className="eyebrow">Prototype</p>
+        <div className="whoosh-prototype-frame">
+          <div className="whoosh-prototype-header">
+            <div>
+              <h2 id="whoosh-prototype-title" className="display">Explore the WHOOSH experience</h2>
+              <p>The prototype demonstrates the group payment flow, participant states, splitting experience, and failure and fallback interactions.</p>
+            </div>
+            <a href={figmaUrl} target="_blank" rel="noopener noreferrer" className="whoosh-prototype-link">
+              Open in Figma <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div className="whoosh-figma-embed">
+            <iframe src={figmaEmbedUrl} title="WHOOSH group payment prototype in Figma" loading="lazy" allowFullScreen />
+          </div>
+        </div>
+      </section>
 
     </div>
   );
@@ -909,7 +929,7 @@ function WhooshCaseStudyPreview() {
       <section className="whoosh-sandbox-preview overflow-hidden rounded-2xl border bg-zinc-950">
         <img src={whooshLinks.previewUrl} alt="WHOOSH developer sandbox showing transaction simulation, API inspector, group balances, and settlement queue" className="whoosh-sandbox-preview-image" />
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/15 px-6 py-5 text-white sm:px-8">
-          <div><h2 className="text-xl font-semibold">Interactive sandbox</h2><p className="mt-1 max-w-xl text-sm leading-6 text-white/65">I built a developer sandbox—not only polished consumer screens—to test and expose the underlying product mechanics. It runs separately from this portfolio.</p></div>
+          <div><h2 className="text-xl font-semibold">Interactive sandbox</h2><p className="mt-1 max-w-xl text-sm leading-6 text-white/65">I built a developer sandbox, not only polished consumer screens, to test and expose the underlying product mechanics. It runs separately from this portfolio.</p></div>
           {demoCta}
         </div>
       </section>
@@ -932,15 +952,15 @@ export function TimeManagementCaseStudyLegacy() {
       <div><p className="eyebrow">UX case study · Student productivity</p><h1 className="display">Time Management &amp;<br />Burnout Prevention</h1><p>Designing a student productivity experience that treats time management and wellbeing as connected problems.</p></div>
     </section>
     <section className="time-overview" aria-label="Project overview"><div><span>Role</span><strong>UX/UI Designer</strong></div><div><span>Project type</span><strong>UX Research + Product Design</strong></div><div><span>Tools</span><strong>Figma</strong></div><div><span>Methods</span><strong>Surveys, Contextual Inquiry, Brainstorming, Personas, Crazy 8s, Wireframing, Prototyping</strong></div></section>
-    <section className="time-case-section time-problem"><span>01 · The problem</span><div><h2 className="display">Productivity was not the whole story.</h2><div><p>Initial student research surfaced overloaded schedules, procrastination, difficulty prioritizing, and the challenge of balancing academics with personal activities. It also surfaced stress, mental exhaustion, and wellbeing habits that dropped away during demanding periods.</p><strong>Time management wasn’t isolated from burnout—poor organization, competing responsibilities, distraction, and stress reinforced one another.</strong></div></div></section>
+    <section className="time-case-section time-problem"><span>01 · The problem</span><div><h2 className="display">Productivity was not the whole story.</h2><div><p>Initial student research surfaced overloaded schedules, procrastination, difficulty prioritizing, and the challenge of balancing academics with personal activities. It also surfaced stress, mental exhaustion, and wellbeing habits that dropped away during demanding periods.</p><strong>Time management wasn’t isolated from burnout: poor organization, competing responsibilities, distraction, and stress reinforced one another.</strong></div></div></section>
     <section className="time-case-section"><span>02 · Research</span><h2 className="display">Listening before narrowing the product.</h2><div className="time-methods"><article><b>01</b><h3>Survey</h3><p>Used to understand broad struggles experienced by university students and narrow the research focus.</p></article><i /><article><b>02</b><h3>Contextual Inquiry</h3><p>Interviews were conducted with university students from different schools and programs, with an additional student observed during their daily routine.</p></article><i /><article><b>03</b><h3>Brainstorming</h3><p>Small sessions with students were used to surface recurring challenges and themes.</p></article></div></section>
     <section className="time-patterns"><span>03 · Synthesis</span><h2 className="display">Patterns started<br />repeating.</h2><div className="time-theme-cloud">{themes.map((theme, index) => <b key={theme} className={`time-theme theme-${index}`}>{theme}</b>)}</div><div className="time-impact"><div><b>Disorganization</b><i>↓</i><b>Procrastination / overload</b><i>↓</i><b>Stress</b><i>↓</i><b>Reduced wellbeing</b></div><p><strong>The productivity problem was also a wellbeing problem.</strong> Students frequently connected poor organization with stress, concentration problems, and difficulty maintaining healthy routines.</p></div></section>
     <section className="time-case-section"><span>04 · Student contexts</span><h2 className="display">Two moments of student life, one connected need.</h2><div className="time-contexts"><article><small>Upper-year context</small><h3>The multitasking upper-year student</h3><p>Balancing full-time study with work and academic, financial, social, and career responsibilities. They want structure without sacrificing wellbeing.</p></article><article><small>First-year context</small><h3>The first-year student adjusting to independence</h3><p>Developing new routines amid distraction and noisy environments while learning to balance school and social life.</p></article></div><div className="time-refined"><span>Refined problem</span><strong>Students need an integrated support system focused on time management, reducing burnout, and improving wellness.</strong></div></section>
     <section className="time-case-section"><span>05 · Product direction</span><h2 className="display">One experience, three ways to help.</h2><div className="time-pillars"><article><b>Plan</b><p>Organize assignments, tasks, study sessions, deadlines, and breaks.</p></article><article><b>Focus</b><p>Create focused study sessions and reduce distractions.</p></article><article><b>Recover</b><p>Encourage breaks, self-care activities, and awareness of wellbeing.</p></article></div></section>
     <section className="time-process"><span>06 · Exploring the flow</span><div><h2 className="display">Before polishing screens,<br />we explored possibilities.</h2><p>Crazy 8 sketches and paper low-fidelity screens helped the team explore several interface approaches before consolidating them into a mobile flow.</p></div><div className="time-progression"><b>Crazy 8s</b><i>→</i><b>Low fidelity</b><i>→</i><b>Wireframes</b><i>→</i><b>Interactive prototype</b></div></section>
-    <section className="time-case-section"><span>07 · Interface rationale</span><h2 className="display">Research shaped the interface—not just the feature list.</h2><div className="time-decisions"><article><h3>Direct manipulation</h3><p>Tasks, timers, and interactive elements use simple actions such as tapping and toggling to keep progress visible and actions immediate.</p></article><article><h3>Familiar metaphors</h3><p>Calendar for scheduling, clock for focus sessions, fire for streaks, and emoji for quick mood and stress input reduce the effort required to learn the system.</p></article><article><h3>Less cognitive load</h3><p>Whitespace, hierarchy, and familiar patterns deliberately make the experience easier to scan when students already feel overloaded.</p></article><article><h3>Motivation without complexity</h3><p>Bright accents and lightweight gamification support engagement without making productivity feel like another demanding system.</p></article></div></section>
+    <section className="time-case-section"><span>07 · Interface rationale</span><h2 className="display">Research shaped the interface, not just the feature list.</h2><div className="time-decisions"><article><h3>Direct manipulation</h3><p>Tasks, timers, and interactive elements use simple actions such as tapping and toggling to keep progress visible and actions immediate.</p></article><article><h3>Familiar metaphors</h3><p>Calendar for scheduling, clock for focus sessions, fire for streaks, and emoji for quick mood and stress input reduce the effort required to learn the system.</p></article><article><h3>Less cognitive load</h3><p>Whitespace, hierarchy, and familiar patterns deliberately make the experience easier to scan when students already feel overloaded.</p></article><article><h3>Motivation without complexity</h3><p>Bright accents and lightweight gamification support engagement without making productivity feel like another demanding system.</p></article></div></section>
     <section className="time-final"><span>08 · The prototype</span><h2 className="display">Designed around the moments<br />that make a day feel manageable.</h2><div>{moments.map(([need, label, response]) => <article key={need}><small>{label}</small><h3>“{need}”</h3><div className="time-screen-label">Screen: {label}</div><p><strong>Design response → </strong>{response}</p></article>)}</div></section>
-    <section className="time-reflection"><div><span>09 · Reflection</span><h2 className="display">What this process clarified.</h2></div><div><p>Research can reveal a different underlying problem than the one a project starts with. Here, it showed that productivity and wellbeing should not necessarily be designed as separate experiences.</p><p>It also reinforced how familiar interactions can lower cognitive effort, and how early sketching creates room to explore before committing to polished UI.</p><h3>What I would explore next</h3><ul><li>Which wellness interventions feel useful rather than annoying?</li><li>When does productivity gamification motivate—and when does it become pressure itself?</li><li>Which dashboard information helps without adding cognitive overload?</li></ul></div></section>
+    <section className="time-reflection"><div><span>09 · Reflection</span><h2 className="display">What this process clarified.</h2></div><div><p>Research can reveal a different underlying problem than the one a project starts with. Here, it showed that productivity and wellbeing should not necessarily be designed as separate experiences.</p><p>It also reinforced how familiar interactions can lower cognitive effort, and how early sketching creates room to explore before committing to polished UI.</p><h3>What I would explore next</h3><ul><li>Which wellness interventions feel useful rather than annoying?</li><li>When does productivity gamification motivate, and when does it become pressure itself?</li><li>Which dashboard information helps without adding cognitive overload?</li></ul></div></section>
   </div>;
 }
 

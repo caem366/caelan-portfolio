@@ -147,7 +147,7 @@ export const projects: Project[] = [
   },
   {
     slug: "whoosh",
-    title: "WHOOSH — Split Payment Platform",
+    title: "WHOOSH: Split Payment Platform",
     tagline: "Case study for a standalone group-payment sandbox with ledger-backed purchase settlement flows",
     role: "Product Engineer",
     inProgress: true,

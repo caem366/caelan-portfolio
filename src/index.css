@@ -10,9 +10,26 @@ body::before { content:""; pointer-events:none; position:fixed; z-index:60; inse
 .whoosh-sandbox-preview { position:relative; z-index:0; isolation:isolate; border-color:rgba(126,167,255,.48); background:#070d1c; box-shadow:0 1.5rem 3.5rem rgba(0,0,0,.2); }
 .whoosh-sandbox-preview-image { display:block; width:100%; max-height:min(72vh,58rem); object-fit:contain; object-position:top; background:#070d1c; }
 .whoosh-sandbox-preview > div:last-child { position:relative; z-index:1; background:#0c1730; }
+.whoosh-sandbox-preview > div:last-child h2 { color:#f8fbff; }
+.whoosh-sandbox-preview > div:last-child p { color:rgba(236,244,255,.78); }
 :root[data-theme="light"] .whoosh-sandbox-preview { border-color:#7d94bd; box-shadow:0 1.2rem 3rem rgba(27,39,56,.14); }
 :root[data-theme="light"] .whoosh-sandbox-preview > div:last-child { background:#172747; }
 @media (max-width:640px) { .whoosh-sandbox-section { scroll-margin-top:5.5rem; }.whoosh-sandbox-preview-image { max-height:none; }.whoosh-sandbox-preview > div:last-child { padding:1.15rem; }.whoosh-sandbox-preview > div:last-child .button-primary { width:100%; } }
+.whoosh-prototype-section { scroll-margin-top:calc(4.75rem + 1rem); }
+.whoosh-prototype-frame { max-width:100%; padding:clamp(1rem,2.5vw,1.5rem); color:#eef3fb; background:#1a2940; border:1px solid rgba(143,171,214,.42); border-radius:1rem; }
+.whoosh-prototype-header { display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem; }
+.whoosh-prototype-header h2 { margin:0; color:#fff; font-size:clamp(2rem,4vw,3.25rem); line-height:.94; }
+.whoosh-prototype-header p { max-width:42rem; margin:.85rem 0 0; color:rgba(238,243,251,.75); font-size:.95rem; line-height:1.65; }
+.whoosh-prototype-link { display:inline-flex; flex:0 0 auto; align-items:center; gap:.45rem; padding:.7rem .9rem; color:#f5f8ff; border:1px solid rgba(204,220,245,.5); border-radius:.6rem; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; transition:border-color .2s ease,color .2s ease,background-color .2s ease; }
+.whoosh-prototype-link:hover { color:#fff; background:rgba(255,255,255,.08); border-color:#fff; }
+.whoosh-figma-embed { margin-top:1.35rem; padding:clamp(.4rem,1.1vw,.65rem); background:#0d1726; border:1px solid rgba(143,171,214,.35); border-radius:.7rem; overflow:hidden; }
+.whoosh-figma-embed iframe { display:block; width:100%; height:clamp(34rem,61vw,52rem); border:0; border-radius:.35rem; background:#fff; }
+:root[data-theme="light"] .whoosh-prototype-frame { color:#f4f7fc; background:#263852; border-color:#405b7d; }
+:root[data-theme="light"] .whoosh-prototype-header h2 { color:#fff; }
+:root[data-theme="light"] .whoosh-prototype-header p { color:rgba(244,247,252,.8); }
+:root[data-theme="light"] .whoosh-prototype-link { color:#fff; border-color:rgba(225,235,249,.62); }
+:root[data-theme="light"] .whoosh-figma-embed { background:#172438; border-color:#4d6686; }
+@media (max-width:640px) { .whoosh-prototype-section { scroll-margin-top:5.5rem; }.whoosh-prototype-frame { padding:.9rem; }.whoosh-prototype-header { display:block; }.whoosh-prototype-link { margin-top:1rem; }.whoosh-figma-embed { margin-top:1rem; padding:.35rem; }.whoosh-figma-embed iframe { height:clamp(30rem,118vw,40rem); } }
 a { color:inherit; } ::selection { background:var(--accent); color:var(--accent-ink); }
 .site-shell { min-height:100vh; background:var(--bg); color:var(--text); --color-white:var(--bg); --color-zinc-50:var(--surface); --color-zinc-100:#252e38; --color-zinc-200:var(--line); --color-zinc-300:var(--line-strong); --color-zinc-400:var(--faint); --color-zinc-500:#8f99a5; --color-zinc-600:var(--muted); --color-zinc-700:#c5cbd2; --color-zinc-800:#e0ddd5; --color-zinc-900:var(--text); }
 .theme-toggle { display:inline-grid; place-items:center; width:1.9rem; height:1.9rem; margin-left:-.15rem; border:1px solid var(--line); border-radius:50%; color:var(--text); font-size:1rem; line-height:1; transition:border-color .2s ease,color .2s ease,transform .2s ease; }.theme-toggle:hover { border-color:var(--accent); color:var(--accent); transform:rotate(14deg); } :root[data-theme="light"] .site-shell { --color-zinc-100:#ece7db; --color-zinc-500:#657387; --color-zinc-700:#344154; --color-zinc-800:#293545; }
